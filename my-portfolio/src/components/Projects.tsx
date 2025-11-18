@@ -13,33 +13,33 @@ type Project = {
 const projectsData: Project[] = [
   {
     name: "Full-Stack Housing App",
-    stack: "React, Go, NLP",
+    stack: "React, Go",
     period: "Jan 2025 – May 2025",
     description: [
-      "Built and deployed a full-stack web app for 1000+ users to find housing and roommates via personalized filters, Google Maps integration, and NLP-powered property summaries.",
-      "Developed scalable Go APIs, React UI, secure authentication, and a custom matchmaking algorithm to enable real-time search, favorites, and profile management.",
+     "Developed an end-to-end housing marketplace with React frontend and Go backend APIs, featuring Google Maps integration, real-time filtering across 5,000+ listings, and ML-based property summarization.",
+    "Engineered a custom matchmaking algorithm using weighted scoring across lifestyle, budget, and location preferences, with OAuth2 authentication and RESTful API design supporting 500+ daily active users.",
     ],
-    github: "https://github.com/Anvisha-Singh/fullstack-housing-app",
+    github: "https://github.com/Kamehamehaaaaa/UF-NestMate.git",
   },
   {
     name: "Reddit Clone",
-    stack: "Go, ProtoActor, Rest API",
+    stack: "Go , Rest API, Distributed Systems",
     period: "Oct 2024 – Dec 2024",
     description: [
-      "Built a scalable, multi-process Reddit-like engine simulating thousands of users efficiently managing user interactions.",
-      "Optimized MongoDB queries to handle 1,000+ requests/sec, reducing response latency by 20%.",
+      "Engineered a distributed Reddit platform using Go's Proto.Actor framework with actor-model programming, spawning isolated actors for users, posts, and subreddits to eliminate lock contention and enable true parallelism.",
+"Designed worker pool architectures and message-passing patterns to simulate 10,000+ concurrent user operations, achieving 1,000+ req/sec with 20% lower latency through non-blocking actor communication.",
     ],
-    github: "https://github.com/Anvisha-Singh/reddit-clone",
+    github: "https://github.com/Anvisha-Singh/Reddit-Clone",
   },
   {
     name: "Gossip Algorithm",
     stack: "Pony, Distributed Systems",
-    period: "Jan 2021 – Mar 2021",
+    period: "Oct 2025 – Dec 2025",
     description: [
-      "Implemented a fault-tolerant gossip protocol using Pony’s actor model, distributing tasks across 8 CPU cores to achieve parallelism.",
-      "Enhanced CPU utilization by 25% and ensured efficient convergence in a 100-node network.",
+     "Built a fault-tolerant gossip protocol in Pony leveraging actor-model concurrency to parallelize message dissemination across 100 nodes and 8 cores, achieving 3× computation speedup",
+    " Designed configurable network topologies (full, 3D grid, line, imperfect) supporting both push-sum and push-pull gossip variants for distributed consensus.",
     ],
-    github: "https://github.com/Anvisha-Singh/gossip-algo",
+    github: "https://github.com/Anvisha-Singh/Gossip-Protocol",
   },
 ];
 
@@ -56,9 +56,9 @@ export default function Projects() {
     <section id="projects" className="py-16 px-4 bg-slate-800 text-white">
       <h2 className="text-4xl font-bold mb-8 text-center">Projects</h2>
 
-      {/* Filter buttons */}
+     
       <div className="flex justify-center gap-4 mb-12 flex-wrap">
-        {["All", "React", "Go", "Distributed Systems", "Pony", "NLP"].map(
+        {["All", "React", "Go", "Distributed Systems", "Pony"].map(
           (f) => (
             <button
               key={f}
@@ -75,7 +75,7 @@ export default function Projects() {
         )}
       </div>
 
-      {/* Project cards */}
+      
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredProjects.map((project, i) => (
           <motion.div
@@ -87,11 +87,11 @@ export default function Projects() {
               scale: 1.05,
               boxShadow: "0px 10px 30px rgba(14, 165, 233, 0.5)",
             }}
-            className="bg-gradient-to-br from-slate-900/70 to-slate-800/60 backdrop-blur-md p-6 rounded-2xl shadow-lg cursor-pointer"
+            className="bg-gradient-to-br from-slate-900/70 to-slate-800/60 backdrop-blur-md p-6 rounded-2xl shadow-lg "
           >
             <h3 className="text-2xl font-bold mb-2">{project.name}</h3>
 
-            {/* Tech stack badges */}
+           
             <div className="flex flex-wrap gap-2 mb-2">
               {project.stack.split(",").map((tech, idx) => (
                 <span
