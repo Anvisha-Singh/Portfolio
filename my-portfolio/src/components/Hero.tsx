@@ -44,27 +44,20 @@ export default function Hero() {
         <FaDocker className="hover:text-teal-300 transition duration-300" />
       </motion.div>
 
-      {/* Buttons */}
+      
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.8 }}
-        className="flex gap-4 mt-4"
       >
         <a
-          href="#projects"
-          className="px-6 py-3 rounded-lg font-medium bg-teal-600 hover:bg-teal-500 
-          text-white transition duration-300"
+          href="/resume.pdf"  
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-6 py-3 rounded-lg font-medium bg-gray-700 hover:bg-gray-600 
+          text-white transition duration-300 hover:text-teal-300"
         >
-          View Projects
-        </a>
-
-        <a
-          href="#contact"
-          className="px-6 py-3 rounded-lg font-medium border border-teal-500 
-          text-teal-300 hover:bg-teal-600 hover:text-white transition duration-300"
-        >
-          Contact Me
+          Resume
         </a>
       </motion.div>
     </section>
