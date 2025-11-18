@@ -52,16 +52,16 @@ export default function Navbar() {
   ];
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed w-full z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-slate-900/95 backdrop-blur-xl shadow-2xl"
-          : "bg-transparent"
-      }`}
-    >
+   <motion.nav
+  initial={{ y: -100 }}
+  animate={{ y: 0 }}
+  transition={{ duration: 0.6, ease: "easeOut" }}
+  className={`fixed w-full z-50 transition-all duration-500 ${
+    scrolled
+      ? "bg-slate-900/40 backdrop-blur-xl shadow-md" // Glassy background, remove border
+      : "bg-transparent"
+  }`}
+>
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           

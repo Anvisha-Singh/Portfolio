@@ -132,7 +132,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="h-screen flex flex-col justify-center items-center text-center px-4 
+      className="min-h-screen flex flex-col justify-center items-center text-center px-4 pt-10
       bg-gradient-to-b from-slate-900 to-slate-800 relative overflow-hidden"
       onMouseMove={handleMouseMove}
     >
@@ -153,23 +153,23 @@ export default function Hero() {
       />
 
       {/* Content Container */}
-      <div className="relative z-10">
+      <div className="relative z-10 max-w-5xl mx-auto">
 
         {/* Center Glow */}
-<motion.div
-  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-  animate={{
-    scale: [1, 1.2, 1],
-    opacity: [0.3, 0.5, 0.3],
-  }}
-  transition={{
-    duration: 3,
-    repeat: Infinity,
-    ease: "easeInOut",
-  }}
->
-  <div className="w-32 h-32 rounded-full bg-teal-400 blur-3xl opacity-30" />
-</motion.div>
+        <motion.div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        >
+          <div className="w-40 h-40 rounded-full bg-teal-400 blur-3xl opacity-30" />
+        </motion.div>
        
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
@@ -194,46 +194,54 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.8 }}
-          className="text-lg md:text-xl text-slate-400 mt-3 mb-12 max-w-xl"
+          className="text-lg md:text-xl text-slate-400 mt-3 mb-6 max-w-xl mx-auto"
         >
-          Full-Stack Developer · Oracle Alumni · MS Computer Science
+          MS in CS | Full-Stack Developer | Oracle Alumni
         </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+          className="max-w-2xl mx-auto mb-12 px-4"
+        >
+          <p className="text-slate-400 text-sm md:text-base leading-relaxed">
+            Backend engineer with experience at Oracle, focused on building scalable distributed systems 
+            and optimizing performance. I solve complex technical problems and deliver reliable infrastructure 
+            that drives business impact.
+          </p>
+        </motion.div>
 
       
         <div className="relative w-64 h-64 mx-auto mb-8">
-   {techIcons.map(({ Icon, delay }, index) => {
-    const angle = (index / techIcons.length) * 2 * Math.PI;
-    const radius = 100;
+          {techIcons.map(({ Icon, delay }, index) => {
+            const angle = (index / techIcons.length) * 2 * Math.PI;
+            const radius = 100;
 
-    return (
-      
-      <motion.div
-      
-        key={index}
-        className="absolute"
-        style={{ left: "50%", top: "50%" }}
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{
-          opacity: 1,
-          scale: 1,
-          x: Math.cos(angle) * radius - 20,
-          y: Math.sin(angle) * radius - 20,
-        }}
-        transition={{ delay: delay * 0.2, duration: 0.8 }}
-      >
-        
-        <motion.div
-          className="text-3xl text-teal-400 hover:text-teal-300 cursor-pointer hover:scale-125 filter drop-shadow-lg"
-          whileHover={{ scale: 1.3 }}
-        >
-          <Icon />
-        </motion.div>
-        
-      </motion.div>
-    );
-  })}
-</div>
-
+            return (
+              <motion.div
+                key={index}
+                className="absolute"
+                style={{ left: "50%", top: "50%" }}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                  x: Math.cos(angle) * radius - 20,
+                  y: Math.sin(angle) * radius - 20,
+                }}
+                transition={{ delay: delay * 0.2, duration: 0.8 }}
+              >
+                <motion.div
+                  className="text-3xl text-teal-400 hover:text-teal-300 cursor-pointer hover:scale-125 filter drop-shadow-lg"
+                  whileHover={{ scale: 1.3 }}
+                >
+                  <Icon />
+                </motion.div>
+              </motion.div>
+            );
+          })}
+        </div>
 
        
         <motion.div
@@ -241,24 +249,31 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.8 }}
         >
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative inline-block px-8 py-4 rounded-lg font-medium 
-            bg-slate-800  text-white transition duration-300 
-            group overflow-hidden border border-teal-400/30"
-          >
-            <span className="relative z-10 group-hover:text-teal-300 transition duration-300">
-              View Resume
-            </span>
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-teal-400/20 to-blue-400/20"
-              initial={{ x: "-100%" }}
-              whileHover={{ x: "100%" }}
-              transition={{ duration: 0.6 }}
-            />
-          </a>
+          <div className="flex gap-4 justify-center flex-wrap">
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative inline-block px-8 py-3 rounded-lg font-medium 
+              bg-gradient-to-r from-teal-500 to-blue-500 text-white transition duration-300 
+              group overflow-hidden hover:shadow-lg hover:shadow-teal-500/50"
+            >
+              <span className="relative z-10 group-hover:scale-105 inline-block transition duration-300">
+                View Resume
+              </span>
+            </a>
+            
+            <a
+              href="#projects"
+              className="relative inline-block px-8 py-3 rounded-lg font-medium 
+              bg-slate-800 text-teal-400 transition duration-300 
+              group overflow-hidden border border-teal-400/50 hover:bg-slate-700"
+            >
+              <span className="relative z-10 group-hover:scale-105 inline-block transition duration-300">
+                See My Work
+              </span>
+            </a>
+          </div>
         </motion.div>
 
       
