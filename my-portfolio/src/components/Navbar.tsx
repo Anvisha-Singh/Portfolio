@@ -41,7 +41,7 @@ export default function Navbar() {
     },
     {
       Icon: FaLinkedin,
-      href: "https://linkedin.com/in/anvisha-singh",
+      href: "https://www.linkedin.com/in/anvisha-singh-1a201b217/",
       label: "LinkedIn"
     },
     {
