@@ -18,8 +18,11 @@ export default function Hero() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
+
     const canvas = canvasRef.current;
     if (!canvas) return;
+    const { width: canvasWidth, height: canvasHeight } = canvas;
+
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
@@ -39,8 +42,8 @@ export default function Hero() {
       radius: number;
 
       constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
+        this.x = Math.random() * canvasWidth;
+        this.y = Math.random() * canvasHeight;
         this.vx = (Math.random() - 0.5) * 0.5;
         this.vy = (Math.random() - 0.5) * 0.5;
         this.radius = Math.random() * 2 + 1;
@@ -50,8 +53,8 @@ export default function Hero() {
         this.x += this.vx;
         this.y += this.vy;
 
-        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+        if (this.x < 0 || this.x > canvasWidth) this.vx *= -1;
+        if (this.y < 0 || this.y > canvasHeight) this.vy *= -1;
       }
 
       draw(context: CanvasRenderingContext2D) {
