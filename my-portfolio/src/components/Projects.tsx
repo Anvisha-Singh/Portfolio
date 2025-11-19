@@ -34,7 +34,7 @@ const projectsData: Project[] = [
   {
     name: "Gossip Algorithm",
     stack: "Pony, Distributed Systems",
-    period: "Oct 2025 – Dec 2025",
+    period: "Sep 2024 – Nov 2024",
     description: [
      "Built a fault-tolerant gossip protocol in Pony leveraging actor-model concurrency to parallelize message dissemination across 100 nodes and 8 cores, achieving 3× computation speedup",
     " Designed configurable network topologies (full, 3D grid, line, imperfect) supporting both push-sum and push-pull gossip variants for distributed consensus.",
