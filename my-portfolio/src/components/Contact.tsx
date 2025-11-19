@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaEnvelope, FaPaperPlane } from "react-icons/fa";
 import { useState } from "react";
+import emailjs from '@emailjs/browser';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -8,12 +9,26 @@ export default function Contact() {
     email: "",
     message: ""
   });
+  const [statusMessage, setStatusMessage] = useState("");
 
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    const mailtoLink = `mailto:anvishasingh2905@gmail.com?subject=Portfolio Contact from ${formData.name}&body=${encodeURIComponent(formData.message)}%0A%0AFrom: ${formData.email}`;
-    window.location.href = mailtoLink;
-  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+  emailjs.send(
+    'service_oxqyskv',
+    'template_0i6ylxl',
+    formData,
+    'Dg244zzn1C2G10La2'
+  ) .then(() => {
+      setStatusMessage("Email sent successfully!");
+    })
+    .catch(() => {
+      setStatusMessage("Failed to send email. Please try again.");
+    });
+
+  setFormData({ name: '', email: '', message: '' });
+};
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -152,58 +167,64 @@ export default function Contact() {
             </motion.div>
           </motion.div>
 
-          {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <div className="space-y-4 p-6 rounded-2xl bg-slate-800/50 border border-slate-700/50 backdrop-blur-sm">
-              <h3 className="text-xl font-semibold mb-4 text-slate-200">
-                Send a Message
-              </h3>
+         <motion.div
+  initial={{ opacity: 0, x: 40 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6, delay: 0.2 }}
+>
+  <form
+    onSubmit={handleSubmit}
+    className="space-y-4 p-6 rounded-2xl bg-slate-800/50 border border-slate-700/50 backdrop-blur-sm"
+  >
+    <h3 className="text-xl font-semibold mb-4 text-slate-200">
+      Send a Message
+    </h3>
 
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Your Name"
-                className="w-full p-3 rounded-lg bg-slate-900/50 text-white border border-slate-700 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20 transition-all duration-300 placeholder-slate-500"
-                required
-              />
+    <input
+      type="text"
+      name="name"
+      value={formData.name}
+      onChange={handleChange}
+      placeholder="Your Name"
+      className="w-full p-3 rounded-lg bg-slate-900/50 text-white border border-slate-700 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20 transition-all duration-300 placeholder-slate-500"
+      required
+    />
 
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Email Address"
-                className="w-full p-3 rounded-lg bg-slate-900/50 text-white border border-slate-700 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20 transition-all duration-300 placeholder-slate-500"
-                required
-              />
+    <input
+      type="email"
+      name="email"
+      value={formData.email}
+      onChange={handleChange}
+      placeholder="Email Address"
+      className="w-full p-3 rounded-lg bg-slate-900/50 text-white border border-slate-700 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20 transition-all duration-300 placeholder-slate-500"
+      required
+    />
 
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                rows={4}
-                placeholder="Tell me about your project or opportunity..."
-                className="w-full p-3 rounded-lg bg-slate-900/50 text-white border border-slate-700 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20 transition-all duration-300 placeholder-slate-500 resize-none"
-                required
-              />
+    <textarea
+      name="message"
+      value={formData.message}
+      onChange={handleChange}
+      rows={4}
+      placeholder="Tell me about your project or opportunity..."
+      className="w-full p-3 rounded-lg bg-slate-900/50 text-white border border-slate-700 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20 transition-all duration-300 placeholder-slate-500 resize-none"
+      required
+    />
 
-              <motion.button
-                onClick={handleSubmit}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full bg-gradient-to-r from-teal-400 to-blue-400 hover:from-teal-500 hover:to-blue-500 text-white font-semibold py-3 rounded-lg flex items-center justify-center gap-2 transition-all duration-300 shadow-md shadow-teal-400/20 hover:shadow-teal-400/40"
-              >
-                Send Message <FaPaperPlane />
-              </motion.button>
-            </div>
-          </motion.div>
+    <motion.button
+      type="submit"
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      className="w-full bg-gradient-to-r from-teal-400 to-blue-400 hover:from-teal-500 hover:to-blue-500 text-white font-semibold py-3 rounded-lg flex items-center justify-center gap-2 transition-all duration-300 shadow-md shadow-teal-400/20 hover:shadow-teal-400/40"
+    >
+      Send Message <FaPaperPlane />
+    </motion.button>
+
+    {statusMessage && (
+      <p className="text-center mt-2 text-teal-300 text-sm">{statusMessage}</p>
+    )}
+  </form>
+</motion.div>
         </div>
 
         {/* Footer Note */}
